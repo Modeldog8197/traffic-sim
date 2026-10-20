@@ -1,0 +1,26 @@
+[
+  {
+    "version": 1,
+    "viewport": "1440x1000",
+    "recorded_requests": 1000,
+    "playback_start_s": 200,
+    "animation_frame_gap_ms_median": 16.699999999999818,
+    "animation_frame_gap_ms_p95": 16.700000000000728,
+    "sample_seconds": 6,
+    "browser_process_rss_snapshot_bytes": 964640768,
+    "js_heap_bytes": 31680048,
+    "note": "Animation-frame scheduling while playing, not an end-to-end interaction latency or vehicle interpolation accuracy score. RSS sums Chrome browser, renderers and helper processes at one snapshot; shared pages can be double-counted."
+  },
+  {
+    "version": 2,
+    "viewport": "1440x1000",
+    "recorded_requests": 1000,
+    "playback_start_s": 200,
+    "animation_frame_gap_ms_median": 16.699999999999818,
+    "animation_frame_gap_ms_p95": 16.700000000000728,
+    "sample_seconds": 6,
+    "browser_process_rss_snapshot_bytes": 1047592960,
+    "js_heap_bytes": 49887852,
+    "note": "Animation-frame scheduling while playing, not an end-to-end interaction latency or vehicle interpolation accuracy score. RSS sums Chrome browser, renderers and helper processes at one snapshot; shared pages can be double-counted."
+  }
+]

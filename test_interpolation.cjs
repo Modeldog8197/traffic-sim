@@ -1,0 +1,12 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const ts=require('../frontend/node_modules/typescript');
+const code=ts.transpileModule(fs.readFileSync('frontend/src/interpolation.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+const sandbox={exports:{}};vm.runInNewContext(code,sandbox);const interpolate=sandbox.exports.interpolate;
+const network={lanes:{A:{length:20,coordinates:[[0,0],[1,0],[1,1]],next:['B']},B:{length:10,coordinates:[[1,1],[2,1]],next:[]}}};
+const vehicle={id:'v',lane:'A',lane_position:0,position:[0,0]};const a={time:2,vehicles:[vehicle]},b={time:4,vehicles:[{...vehicle,lane_position:20,position:[1,1]}]};
+assert.deepEqual([...interpolate(a,b,3,network)[0].position],[1,0]);
+assert.equal(interpolate(undefined,b,1,network).length,0);
+assert.deepEqual([...interpolate(a,{time:4,vehicles:[]},3,network)[0].position],[0,0]);
+const disconnected={time:4,vehicles:[{...vehicle,lane:'missing',position:[9,9]}]};assert.deepEqual([...interpolate(a,disconnected,3,network)[0].position],[0,0]);
+assert.deepEqual([...interpolate({...a,vehicles:[{...vehicle,lane_position:15}]},{time:4,vehicles:[{...vehicle,lane:'B',lane_position:5,position:[1.5,1]}]},3,network)[0].position],[1,1]);
+console.log('5 lane-path, missing-sample and junction interpolation checks passed');

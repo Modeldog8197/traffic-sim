@@ -1,0 +1,11 @@
+services:
+  citylab:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - citylab-data:/app/data
+    init: true
+    stop_grace_period: 10s
+volumes:
+  citylab-data:

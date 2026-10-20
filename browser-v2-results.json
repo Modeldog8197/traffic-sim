@@ -1,0 +1,17 @@
+{
+  "journey": "passed",
+  "screenshots": 10,
+  "consoleErrors": [],
+  "checks": [
+    "recorded paired playback",
+    "junction inspector",
+    "compatible comparison",
+    "research explorer",
+    "synthetic calibration",
+    "stable rename",
+    "independent duplicate",
+    "historical network independent of draft",
+    "390 px layout",
+    "200% zoom"
+  ]
+}

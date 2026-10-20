@@ -1,0 +1,13 @@
+.git
+.venv
+frontend/node_modules
+frontend/dist
+data
+.pytest_cache
+**/__pycache__
+CityLab/
+CityLab*.zip
+output/
+release/
+docs/v2-*.png
+docs/*.prof

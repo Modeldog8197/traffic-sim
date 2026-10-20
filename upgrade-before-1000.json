@@ -1,0 +1,33 @@
+{
+  "hardware": "macOS-15.0-arm64-arm-64bit",
+  "cpu": "arm",
+  "logical_cpus": 8,
+  "network_nodes": 16,
+  "directed_roads": 48,
+  "requested_vehicles": 1000,
+  "horizon_s": 780,
+  "wall_seconds": 12.208918125001219,
+  "simulated_seconds_per_wall_second": 63.88772469550181,
+  "trajectory_bytes": 16609948,
+  "python_peak_rss_bytes": 47759360,
+  "metrics": {
+    "mean": 252.25384615384615,
+    "median": 224.75,
+    "p95": 491.835,
+    "delay": 161.55962288536546,
+    "car_mean": 250.0236301369863,
+    "bus_mean": 284.815,
+    "sample_size": 312,
+    "requested": 1000,
+    "completed": 312,
+    "active": 641,
+    "backlog": 47,
+    "invalid": 0,
+    "unfinished": 688,
+    "completion_rate": 0.312,
+    "throughput": 1440.0,
+    "horizon": 780,
+    "warnings": []
+  },
+  "engine": "SUMO 1.27.1"
+}

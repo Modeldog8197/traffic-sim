@@ -1,0 +1,22 @@
+{
+  "task": {
+    "id": "bb92651fff2a48b5a22e474259e80529",
+    "kind": "playback",
+    "status": "completed",
+    "progress": 1.0,
+    "spec": {
+      "baseline": "demo-v2b-research-1397e003734159c4",
+      "candidate": "demo-v2b-research-8af4b0c7762397ac"
+    },
+    "detail": {
+      "stage": "Recorded pair ready",
+      "completed_runs": 2
+    },
+    "error": null,
+    "created": 1790443545.663782
+  },
+  "pair": {
+    "baseline": "bb92651fff2a48b5a22e474259e80529-baseline",
+    "candidate": "bb92651fff2a48b5a22e474259e80529-candidate"
+  }
+}

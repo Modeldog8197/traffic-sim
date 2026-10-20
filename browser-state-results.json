@@ -1,0 +1,7 @@
+{
+  "staleResponse": "passed",
+  "controllerInspector": "passed",
+  "undoRedo": "passed",
+  "pdfExport": "passed",
+  "consoleErrors": []
+}

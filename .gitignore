@@ -1,0 +1,10 @@
+.venv/
+node_modules/
+frontend/dist/
+data/*
+!data/.gitkeep
+__pycache__/
+.pytest_cache/
+*.pyc
+.pnpm-store/
+*.tsbuildinfo

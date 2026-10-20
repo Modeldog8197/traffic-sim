@@ -1,0 +1,116 @@
+<!doctype html><html><head><meta charset="utf-8"><title>CityLab evidence report</title><style>@page{size:A4;margin:18mm}body{font:13px system-ui;color:#243a3c;max-width:1000px;margin:30px auto;line-height:1.55}h1{font-size:30px}h2{margin-top:28px;border-top:1px solid #aaa;padding-top:12px}table{width:100%;border-collapse:collapse;font-size:11px}td,th{padding:8px;text-align:left;border-bottom:1px solid #ddd}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:10px}tr{break-inside:avoid}.bar{height:12px;background:#567f80}button{padding:10px}@media print{button{display:none}}</style></head><body><button onclick="window.print()">Print / Save as PDF</button><h1>CityLab · Evidence report</h1><p>How can we improve movement without hiding journeys, people or streets that become worse off?</p><p>Generated traffic demand and actual SUMO outputs. Not live traffic or a validated digital twin.</p><h2>Held-out outcomes</h2><p>Completion constraints apply before ranking. The frontier includes only evaluated feasible candidates. A lower completed-trip mean does not establish better service.</p><table><tr><th>Candidate</th><th>Feasible</th><th>Completion</th><th>Full-demand loss</th><th>Bus mean</th><th>Modelled CO₂</th></tr><tr><td>Baseline</td><td>False</td><td>0.760</td><td>244.623 s</td><td>— s</td><td>77.145 kg</td></tr><tr><td>Candidate 738c</td><td>False</td><td>0.767</td><td>241.394 s</td><td>— s</td><td>76.206 kg</td></tr><tr><td>Candidate d48a</td><td>False</td><td>0.753</td><td>247.567 s</td><td>— s</td><td>77.596 kg</td></tr><tr><td>Candidate 738c · no-priority</td><td>False</td><td>0.758</td><td>244.323 s</td><td>— s</td><td>76.322 kg</td></tr><tr><td>Candidate d48a · no-priority</td><td>False</td><td>0.760</td><td>244.623 s</td><td>— s</td><td>77.145 kg</td></tr></table><h2>Evaluated trade-offs</h2><svg viewBox="0 0 600 260" role="img" aria-label="Completion versus full-demand loss"><path d="M60 30V210H560" fill="none" stroke="#a7b6a1"/><circle cx="307.6709373815978" cy="80.77875" r="6" fill="#b77b54"/><text x="315.6709373815978" y="74.77875" font-size="11">1</text><circle cx="247.21523702786288" cy="79.60999999999999" r="6" fill="#b77b54"/><text x="255.21523702786288" y="73.60999999999999" font-size="11">2</text><circle cx="362.7847629721377" cy="82.00416666666666" r="6" fill="#b77b54"/><text x="370.7847629721377" y="76.00416666666666" font-size="11">3</text><circle cx="302.0544802707617" cy="81.06916666666666" r="6" fill="#b77b54"/><text x="310.0544802707617" y="75.06916666666666" font-size="11">4</text><circle cx="307.6709373815978" cy="80.77875" r="6" fill="#b77b54"/><text x="315.6709373815978" y="74.77875" font-size="11">5</text><text x="10" y="40" font-size="11">100%</text><text x="22" y="210" font-size="11">0%</text><text x="60" y="235" font-size="11">231.4</text><text x="520" y="235" font-size="11">257.6</text><text x="180" y="255" font-size="11">Full-demand loss (s/request)</text></svg><p>Numbers match table rows. Teal: feasible; brown: a service constraint failed. The computed frontier uses all selected objectives.</p><h2>Paired effects by condition</h2><h3>738cca548f · uniform</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>-0.706562500000004</td><td>[-11.79832812500001, 10.992398437499995]</td><td>10</td></tr><tr><td>mean (s)</td><td>-1.7293636276535467</td><td>[-3.2543721799557512, -0.04314452481001543]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>-0.0012499999999999955</td><td>[-0.03126562499999999, 0.02812499999999999]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>-2.275</td><td>[-8.416770833333333, 3.8251041666666716]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>-0.7751965640961643</td><td>[-1.8350183960573148, 0.3564345935502716]</td><td>10</td></tr></table><h3>738cca548f · peak</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>-0.1556250000000091</td><td>[-9.312015625000015, 9.683523437499982]</td><td>10</td></tr><tr><td>mean (s)</td><td>0.6052745759149843</td><td>[-2.2588006515971943, 3.128832123980768]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>0.0006249999999999867</td><td>[-0.027500000000000014, 0.02749999999999999]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>-8.279166666666669</td><td>[-12.01260416666667, -3.4995833333333355]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>-0.3531655795592414</td><td>[-1.050073811456644, 0.5890392894328219]</td><td>10</td></tr></table><h3>738cca548f · high_demand</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>-9.012916666666655</td><td>[-14.93334895833331, -3.416223958333332]</td><td>10</td></tr><tr><td>mean (s)</td><td>1.2894302039870353</td><td>[-0.15459182775200686, 2.635436915240233]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>0.023749999999999976</td><td>[0.007072916666666642, 0.04124999999999998]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>-5.162500000000003</td><td>[-13.033750000000003, 1.4595833333333246]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>-2.078288872698086</td><td>[-2.8611332648407277, -1.3970610433428607]</td><td>10</td></tr></table><h3>738cca548f · bus_mix</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>-7.748437500000003</td><td>[-18.896109375, 3.541671874999983]</td><td>10</td></tr><tr><td>mean (s)</td><td>0.730163174121742</td><td>[-1.4709369858615702, 3.2843581863127467]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>0.020624999999999994</td><td>[-0.012500000000000011, 0.05314062499999993]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>-10.497499999999999</td><td>[-16.891458333333325, -5.142375000000004]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>-0.7156447066079223</td><td>[-1.4817880236658119, 0.04684160539747679]</td><td>10</td></tr></table><h3>738cca548f · disruption</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>1.4775000000000034</td><td>[-3.3759999999999892, 5.937187500000002]</td><td>10</td></tr><tr><td>mean (s)</td><td>-3.072198517471216</td><td>[-4.866534021439839, -1.2661849403790897]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>-0.009375</td><td>[-0.023125000000000017, 0.005625000000000024]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>None</td><td>None</td><td>0</td></tr><tr><td>co2_kg (kg)</td><td>-0.7706098438010734</td><td>[-1.1364629442458067, -0.45830048668923723]</td><td>10</td></tr></table><h3>d48a77c239 · uniform</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>8.082187499999998</td><td>[-1.3722578125000033, 17.897531249999997]</td><td>10</td></tr><tr><td>mean (s)</td><td>-0.4021675102201783</td><td>[-2.8404324490070842, 2.221883963493646]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>-0.023750000000000004</td><td>[-0.05000000000000001, 0.0006249999999999977]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>9.358333333333334</td><td>[6.524791666666667, 13.250520833333335]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>0.5111335933834624</td><td>[-0.511532470780117, 1.5653154438030175]</td><td>10</td></tr></table><h3>d48a77c239 · peak</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>4.831874999999991</td><td>[0.04365624999999157, 10.24831249999999]</td><td>10</td></tr><tr><td>mean (s)</td><td>0.818887507659278</td><td>[0.0315258459027519, 1.7380437590447524]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>-0.011250000000000015</td><td>[-0.02562500000000002, 0.0012499999999999955]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>7.729166666666666</td><td>[4.558229166666665, 12.2003125]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>0.6037128299716812</td><td>[0.19369396758358665, 1.1168971121316233]</td><td>10</td></tr></table><h3>d48a77c239 · high_demand</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>0.6068750000000194</td><td>[-5.125156249999972, 6.246697916666678]</td><td>10</td></tr><tr><td>mean (s)</td><td>1.1457421184947805</td><td>[-0.42113828517086754, 2.8898319728350885]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>-0.0004166666666666818</td><td>[-0.015427083333333372, 0.015416666666666651]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>6.975000000000003</td><td>[2.074791666666667, 12.958333333333337]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>0.6162530541043836</td><td>[-0.25657346388596053, 1.4059434547069019]</td><td>10</td></tr></table><h3>d48a77c239 · bus_mix</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>1.1984375</td><td>[-4.347390624999996, 7.4962734374999895]</td><td>10</td></tr><tr><td>mean (s)</td><td>1.6012096486584482</td><td>[-0.4704792735960563, 4.008745048951615]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>-0.0006249999999999977</td><td>[-0.018124999999999992, 0.016265624999999936]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>-5.000833333333333</td><td>[-9.121166666666662, -0.928333333333336]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>0.5243682781779697</td><td>[0.055953176743046035, 0.9964746997788223]</td><td>10</td></tr></table><h3>d48a77c239 · disruption</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>mean (s)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>None</td><td>None</td><td>0</td></tr><tr><td>co2_kg (kg)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr></table><h3>738cca548f-no-priority · uniform</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>4.939687499999994</td><td>[-6.0900546875000074, 16.58454687499999]</td><td>10</td></tr><tr><td>mean (s)</td><td>-2.0836615389440367</td><td>[-5.017634134334753, 0.6437680424528642]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>-0.017499999999999995</td><td>[-0.0475, 0.011250000000000015]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>-1.1375</td><td>[-5.595833333333334, 3.075624999999997]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>-0.5018162368766511</td><td>[-1.9053121609986985, 0.8259353501900129]</td><td>10</td></tr></table><h3>738cca548f-no-priority · peak</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>9.031874999999996</td><td>[0.7389453124999984, 16.874898437499997]</td><td>10</td></tr><tr><td>mean (s)</td><td>-1.0997994086867209</td><td>[-2.835356932971736, 0.47789611756954575]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>-0.026875000000000017</td><td>[-0.05125000000000002, -0.0018750000000000153]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>-3.4125</td><td>[-9.509166666666667, 2.6459374999999974]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>-0.06262878494963645</td><td>[-0.6619618599593876, 0.5074928886392639]</td><td>10</td></tr></table><h3>738cca548f-no-priority · high_demand</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>-7.313749999999999</td><td>[-12.298921875000005, -2.3793906249999988]</td><td>10</td></tr><tr><td>mean (s)</td><td>1.7232375346711308</td><td>[0.06095188322960157, 3.3071579628997227]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>0.020833333333333322</td><td>[0.0062500000000000056, 0.03583333333333332]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>-7.695833333333335</td><td>[-17.95697916666667, 1.4132291666666628]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>-1.6645536086249195</td><td>[-2.5649598857917555, -0.9168215971021333]</td><td>10</td></tr></table><h3>738cca548f-no-priority · bus_mix</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>-9.635312500000001</td><td>[-21.1945234375, 1.5460937499999956]</td><td>10</td></tr><tr><td>mean (s)</td><td>-0.14627564342237348</td><td>[-2.2634470945856076, 1.7971818132945494]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>0.024375</td><td>[-0.008125000000000004, 0.05624999999999999]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>-10.899166666666668</td><td>[-15.586666666666664, -5.946479166666674]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>-1.1155068967112967</td><td>[-1.9925522491341585, -0.3114520826277465]</td><td>10</td></tr></table><h3>738cca548f-no-priority · disruption</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>1.4775000000000034</td><td>[-3.3759999999999892, 5.937187500000002]</td><td>10</td></tr><tr><td>mean (s)</td><td>-3.072198517471216</td><td>[-4.866534021439839, -1.2661849403790897]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>-0.009375</td><td>[-0.023125000000000017, 0.005625000000000024]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>None</td><td>None</td><td>0</td></tr><tr><td>co2_kg (kg)</td><td>-0.7706098438010734</td><td>[-1.1364629442458067, -0.45830048668923723]</td><td>10</td></tr></table><h3>d48a77c239-no-priority · uniform</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>mean (s)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr></table><h3>d48a77c239-no-priority · peak</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>mean (s)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr></table><h3>d48a77c239-no-priority · high_demand</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>mean (s)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr></table><h3>d48a77c239-no-priority · bus_mix</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>mean (s)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>co2_kg (kg)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr></table><h3>d48a77c239-no-priority · disruption</h3><table><tr><th>Metric</th><th>Paired mean difference</th><th>95% interval</th><th>Runs</th></tr><tr><td>full_demand_loss (s/request)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>mean (s)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>completion_rate (fraction)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr><tr><td>bus_mean (s)</td><td>None</td><td>None</td><td>0</td></tr><tr><td>co2_kg (kg)</td><td>0.0</td><td>[0.0, 0.0]</td><td>10</td></tr></table><h2>Run provenance and distributional evidence</h2><p>Each replicate uses its own seed. Overall summaries average tested conditions within each seed; condition-specific paired effects use ten seed pairs in the bundled research case.</p><p>Application: CityLab 2.0.0. Engine: SUMO 1.27.1. Timestep: 0.5 seconds. Synthetic generated demand; occupancy assumptions are part of the immutable configuration. Emissions: HBEFA3/PC_G_EU4 and HBEFA3/Bus, integrated over the timestep.</p><table><tr><th>Candidate / class</th><th>Requests across runs</th><th>Completed</th><th>Loss s/request</th></tr><tr><td>Baseline / Class · passenger</td><td>8580</td><td>6409</td><td>249.39</td></tr><tr><td>Baseline / Class · bus</td><td>220</td><td>127</td><td>325.79</td></tr><tr><td>Candidate 738c / Class · passenger</td><td>8580</td><td>6472</td><td>246.10</td></tr><tr><td>Candidate 738c / Class · bus</td><td>220</td><td>138</td><td>304.07</td></tr><tr><td>Candidate d48a / Class · passenger</td><td>8580</td><td>6345</td><td>252.37</td></tr><tr><td>Candidate d48a / Class · bus</td><td>220</td><td>133</td><td>318.90</td></tr><tr><td>Candidate 738c · no-priority / Class · passenger</td><td>8580</td><td>6394</td><td>249.23</td></tr><tr><td>Candidate 738c · no-priority / Class · bus</td><td>220</td><td>145</td><td>294.55</td></tr><tr><td>Candidate d48a · no-priority / Class · passenger</td><td>8580</td><td>6409</td><td>249.39</td></tr><tr><td>Candidate d48a · no-priority / Class · bus</td><td>220</td><td>127</td><td>325.79</td></tr></table><p>Per-run OD sample sizes and exact network/configuration hashes are included in the machine-readable results. Small groups are flagged, never ranked.</p><h2>Interventions and constraints</h2><pre>{
+  &quot;schema_version&quot;: 2,
+  &quot;name&quot;: &quot;Recorded research \u00b7 five demand conditions&quot;,
+  &quot;scenario&quot;: {
+    &quot;schema_version&quot;: 2,
+    &quot;name&quot;: &quot;Recorded case \u00b7 fixed 30 s&quot;,
+    &quot;network&quot;: &quot;synthetic&quot;,
+    &quot;network_version&quot;: null,
+    &quot;duration&quot;: 120,
+    &quot;clearance&quot;: 180,
+    &quot;warmup&quot;: 0,
+    &quot;seed&quot;: 42,
+    &quot;demand&quot;: 160,
+    &quot;pattern&quot;: &quot;uniform&quot;,
+    &quot;bus_fraction&quot;: 0.08,
+    &quot;controller&quot;: &quot;fixed&quot;,
+    &quot;green&quot;: 30,
+    &quot;min_green&quot;: 10,
+    &quot;max_green&quot;: 60,
+    &quot;transit_extension&quot;: 0,
+    &quot;pressure_downstream&quot;: true,
+    &quot;car_occupancy&quot;: 1.5,
+    &quot;bus_occupancy&quot;: 30.0,
+    &quot;transit&quot;: [
+      {
+        &quot;id&quot;: &quot;B1&quot;,
+        &quot;route&quot;: [
+          &quot;n01_n11&quot;,
+          &quot;n11_n21&quot;,
+          &quot;n21_n31&quot;,
+          &quot;n31_n32&quot;,
+          &quot;n32_n33&quot;
+        ],
+        &quot;stops&quot;: [
+          {
+            &quot;edge&quot;: &quot;n11_n21&quot;,
+            &quot;lane&quot;: 0,
+            &quot;position&quot;: 110.0,
+            &quot;dwell&quot;: 15.0
+          }
+        ],
+        &quot;headway&quot;: 30,
+        &quot;first_departure&quot;: 0,
+        &quot;departures&quot;: []
+      }
+    ],
+    &quot;corridors&quot;: {
+      &quot;Eastbound north&quot;: [
+        &quot;n00_n10&quot;,
+        &quot;n10_n20&quot;,
+        &quot;n20_n30&quot;
+      ]
+    },
+    &quot;routing&quot;: &quot;departure_fastest&quot;,
+    &quot;roads&quot;: {},
+    &quot;od&quot;: [],
+    &quot;signals&quot;: {}
+  },
+  &quot;mode&quot;: &quot;research&quot;,
+  &quot;space&quot;: {
+    &quot;greens&quot;: [
+      15,
+      30
+    ],
+    &quot;controllers&quot;: [
+      &quot;fixed&quot;,
+      &quot;pressure&quot;
+    ],
+    &quot;transit_extensions&quot;: [
+      5
+    ],
+    &quot;junction_greens&quot;: {},
+    &quot;road_speeds&quot;: {},
+    &quot;road_access&quot;: {}
+  },
+  &quot;search_seed&quot;: 2026,
+  &quot;max_candidates&quot;: 4,
+  &quot;finalists&quot;: 2,
+  &quot;budget&quot;: 370,
+  &quot;search_seeds&quot;: [
+    11,
+    12
+  ],
+  &quot;tuning_seeds&quot;: [
+    31,
+    32
+  ],
+  &quot;evaluation_seeds&quot;: [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110
+  ],
+  &quot;conditions&quot;: [
+    &quot;uniform&quot;,
+    &quot;peak&quot;,
+    &quot;high_demand&quot;,
+    &quot;bus_mix&quot;,
+    &quot;disruption&quot;
+  ],
+  &quot;disruption_road&quot;: &quot;n11_n21&quot;,
+  &quot;objectives&quot;: [
+    &quot;full_demand_loss&quot;,
+    &quot;person_loss&quot;
+  ],
+  &quot;min_completion&quot;: 0.5,
+  &quot;max_completion_drop&quot;: 0.05,
+  &quot;max_invalid_fraction&quot;: 0.1,
+  &quot;ablations&quot;: true
+}</pre><h2>Interpretation and limitations</h2><p>Results apply only within this model and these tested conditions. Runs—not vehicles—are experimental replicates. Bootstrap intervals are exploratory and unadjusted for multiple comparisons; small samples can be inconclusive. Non-completed trips are censored; the full-demand loss applies an explicit one-horizon penalty. Person outcomes depend on assumed occupancy. Emissions are SUMO HBEFA model estimates.</p><p>Reproduce from the included configuration, manifests, network hashes, application revision and pinned dependencies. See METHODOLOGY.md for equations, controller deviations and sampling definitions.</p></body></html>
