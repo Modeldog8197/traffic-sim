@@ -10,7 +10,7 @@ CityLab supports that workflow for a junction or short corridor in **HSR Layout,
 
 - Repository: <https://github.com/Modeldog8197/traffic-sim>
 - Pages target: <https://modeldog8197.github.io/traffic-sim/> — see [actual deployment status](docs/RESEARCH-VERIFICATION.md); this configured address is not proof of publication.
-- [Release downloads](https://github.com/Modeldog8197/traffic-sim/releases): source ZIP and interface screenshots, when published.
+- [Verified release source ZIP](https://github.com/Modeldog8197/traffic-sim/archive/refs/tags/v2.1.0.zip) · [Release notes](https://github.com/Modeldog8197/traffic-sim/releases/tag/v2.1.0) · [Interface screenshots](docs/screenshots/).
 - [Field collection guide](docs/FIELD_GUIDE.md) and [methodology](docs/METHODOLOGY.md).
 
 ![Study workspace](docs/screenshots/study-desktop.png)

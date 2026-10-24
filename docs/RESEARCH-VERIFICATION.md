@@ -23,8 +23,12 @@ Browser checks found and corrected missing accessible select names and in-sessio
 
 ## Publication status
 
-Authenticated GitHub account `Modeldog8197` was verified. The repository exists and history is preserved. Enabling Pages with the supplied integration returned HTTP 403 `Resource not accessible by integration`. An account with Pages administration permission must set repository Settings → Pages → Source to GitHub Actions. The configured target `https://modeldog8197.github.io/traffic-sim/` is not yet verified as published.
+Authenticated GitHub account `Modeldog8197` was verified. The implementation was uploaded to `main` as `c755b27`, preserving existing history. [Release 2.1](https://github.com/Modeldog8197/traffic-sim/releases/tag/v2.1.0) is published. Its [source ZIP](https://github.com/Modeldog8197/traffic-sim/archive/refs/tags/v2.1.0.zip) was downloaded from GitHub (35,534,632 bytes) and passed archive integrity checks. Screenshots are available in `docs/screenshots/`.
+
+The clean GitHub-hosted [verify-build job passed](https://github.com/Modeldog8197/traffic-sim/actions/runs/40120274742/job/120950107600): Python/TypeScript/interpolation tests, static-data generation, production build and the complete browser journey. The deploy job failed because the Pages site is not enabled. Enabling Pages with the supplied integration returned HTTP 403 `Resource not accessible by integration`. An account with Pages administration permission must set repository Settings → Pages → Source to GitHub Actions. The configured target `https://modeldog8197.github.io/traffic-sim/` is not yet verified as published.
 
 ## Limits
 
 No real HSR measurements, official adoption, operational effects or mixed-traffic validity were tested. Windows, macOS and a public Python/SUMO service are unverified. Browser checks use Chromium, desktop and 390px mobile; they are not a full accessibility audit or cross-browser certification. The MapLibre vendor bundle remains large. Python tests emit an upstream AnyIO/Starlette deprecation warning.
+
+Cloud onboarding install/start instructions were updated to the canonical checkout and saved as an environment configuration draft. The repeatable installation and rebuilt full local application were verified. Saving the draft does not publish the environment.

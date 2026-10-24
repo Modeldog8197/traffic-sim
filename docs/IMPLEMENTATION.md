@@ -7,7 +7,9 @@
 - [x] Preserve the full simulator and provide an honest static recorded demonstration.
 - [x] Improve map readability, introduction, accessible workflows and responsive layouts.
 - [x] Add focused tests, exercise local/static browser journeys, document evidence limitations.
-- [ ] Upload reviewed source, deploy and verify GitHub Pages, package ZIP and screenshots.
+- [x] Upload reviewed source to main; publish release source ZIP and screenshots.
+- [x] Verify GitHub Actions build/test/browser job on a clean hosted runner.
+- [ ] Publish and verify Pages: blocked by repository Pages enablement permission (HTTP 403); owner action documented in RESEARCH-VERIFICATION.md.
 
 Baseline: all 30 original Python tests and five interpolation checks passed.
 Original archive SHA256: 239b182793c7379b7e292689b6cc901e1e3797dd528f220495a11abb5591e6db.
