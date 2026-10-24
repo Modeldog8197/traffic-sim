@@ -8,3 +8,6 @@ __pycache__/
 *.pyc
 .pnpm-store/
 *.tsbuildinfo
+frontend/public/demo/
+playwright-report/
+test-results/

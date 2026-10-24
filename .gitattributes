@@ -1,0 +1,6 @@
+# Preserve original evidence bytes; PDF is binary even when its content is ASCII.
+*.pdf binary
+*.png binary
+*.gz binary
+*.zip binary
+*.csv -text whitespace=cr-at-eol

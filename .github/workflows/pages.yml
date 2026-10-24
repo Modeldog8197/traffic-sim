@@ -1,0 +1,63 @@
+name: Verify and publish CityLab
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: citylab-pages-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.lock.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.0
+      - run: python -m pip install -r requirements.lock.txt
+      - run: pnpm --dir frontend install --frozen-lockfile
+      - run: python -m pytest -q
+      - run: pnpm --dir frontend test
+      - run: node scripts/test_interpolation.cjs
+      - run: python -m scripts.build_pages_data
+      - run: pnpm --dir frontend build:pages
+      - run: pnpm --dir frontend exec playwright install --with-deps chromium
+      - name: Exercise the Pages build without a backend
+        run: |
+          mkdir -p /tmp/citylab-pages
+          ln -s "$GITHUB_WORKSPACE/frontend/dist" /tmp/citylab-pages/traffic-sim
+          python -m http.server 4173 --bind 127.0.0.1 --directory /tmp/citylab-pages > /tmp/citylab-pages-http.log 2>&1 &
+          node scripts/browser-research.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-verification
+          path: test-results/research
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: verify-build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish verified static demonstration
+        id: deployment
+        uses: actions/deploy-pages@v4

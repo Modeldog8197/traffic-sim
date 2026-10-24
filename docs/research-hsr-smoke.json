@@ -1,0 +1,33 @@
+{
+  "id": "105f19bbe3dd4c50a171901e046e91a4",
+  "metrics": {
+    "mean": 57.019999999999996,
+    "median": 52.05,
+    "p95": 99.05500000000002,
+    "delay": 26.652472172703234,
+    "car_mean": 57.019999999999996,
+    "bus_mean": null,
+    "sample_size": 20,
+    "requested": 20,
+    "completed": 20,
+    "active": 0,
+    "backlog": 0,
+    "invalid": 0,
+    "unfinished": 0,
+    "completion_rate": 1.0,
+    "throughput": 109.0909090909091,
+    "horizon": 660,
+    "warnings": [],
+    "otherwise_unserved": 0,
+    "full_demand_loss": 57.019999999999996,
+    "person_loss": 57.019999999999996,
+    "person_completed_mean": 57.019999999999996,
+    "co2_kg": 4.270229427992651,
+    "nox_g": 1.7824438338499988,
+    "queue_seconds": 0.5,
+    "bus_stop_seconds": 0,
+    "censored": 0,
+    "od_inequality": null
+  },
+  "network": "1c9acf802a08e6f7388739f3a51a7d36fc9d65a2a15dc48b8ec239e86705c251"
+}

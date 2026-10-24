@@ -1,96 +1,113 @@
-# CityLab 2.0
+# CityLab — Neighbourhood Traffic Research
 
-A local, single-user SUMO laboratory for neighbourhood interventions. Design a scenario, preserve a recorded baseline, search a finite intervention space, and challenge frozen candidates on held-out demand. Completed-trip averages always appear beside completion and a declared full-demand loss.
+Can we understand a local traffic problem, test a specific change, and explain its benefits and drawbacks using traceable evidence?
 
-## Start locally
+CityLab supports that workflow for a junction or short corridor in **HSR Layout, Bangalore**: define a question → collect observations → check the baseline → compare interventions → explain results → export a planning brief. It preserves the original React/TypeScript, FastAPI, SUMO and MapLibre application, its recordings, experiment search, calibration and evidence exports.
 
-Python **3.12** is recommended. The release includes the production frontend, authentic recorded examples and an HSR OpenStreetMap extract. No account, key, map service or external database is required.
+**Research software, not live traffic, an official planning service or a validated digital twin.** Bundled traffic and observations are synthetic. The separate HSR OpenStreetMap network is geographic data, not evidence of local traffic performance. No police adoption, approval or proven local impact is claimed.
 
-```sh
-cd CityLab-2.0.0
+## Demonstration and downloads
+
+- Repository: <https://github.com/Modeldog8197/traffic-sim>
+- Pages target: <https://modeldog8197.github.io/traffic-sim/> — see [actual deployment status](docs/RESEARCH-VERIFICATION.md); this configured address is not proof of publication.
+- [Release downloads](https://github.com/Modeldog8197/traffic-sim/releases): source ZIP and interface screenshots, when published.
+- [Field collection guide](docs/FIELD_GUIDE.md) and [methodology](docs/METHODOLOGY.md).
+
+![Study workspace](docs/screenshots/study-desktop.png)
+
+![Recorded comparison](docs/screenshots/comparison-desktop.png)
+
+## Who this helps
+
+**Traffic police and planners:** investigate queues and bottlenecks; compare signal timings and supported bus priority; explore temporary restrictions with departure routing; check whether another approach gets worse; prepare evidence for further review. Operational decisions require qualified local review.
+
+**Residents and neighbourhood associations:** understand a proposed street change, compare nearby roads, record recurring problems and discuss maps and evidence. Resident notes are unverified, browser-local and exportable. Nothing is sent to authorities; do not include names, contacts, number plates or other personal identifiers.
+
+## Capabilities
+
+- A guided study workspace for 1–30 connected directed roads, including location, question, boundary, intervention, primary outcome, success target, sources, assumptions, limitations and notes.
+- Save, reopen, duplicate and JSON import/export. Studies and dated observations use browser storage in both modes; export backups before clearing data or moving devices. No account synchronisation is implied.
+- Immutable snapshots preserve exact configurations, run IDs, network/manifest hashes, measurements, observations and research plans. Revising a draft cannot alter historical evidence. SHA-256 export checks detect changed snapshots; they are integrity checks, not authenticated signatures.
+- Lock criteria before evaluation; attaching older runs is marked **retrospective**. The recorded example is not preregistered research.
+- Dated CSV templates, an example copied from authentic synthetic counts, explicit road mapping, unit/range/date/time-zone checks and overlap/duplicate rejection. Calibration, validation and context remain distinct.
+- Local bounded demand calibration on early intervals, followed by untouched intervals with different seeds. The Study handoff records the dataset ID, fit boundary and validation boundary; configure that dataset and the stated horizon in Data lab.
+- Paired recorded playback, road/junction inspection, signal decisions, completed and unfinished outcomes, class/OD effects, independent-seed uncertainty, held-out demand conditions, unsuccessful candidates and reproducibility exports.
+- Deterministic resident explanations and self-contained HTML planning briefs with matched maps, actual metrics, road-entry effects, adverse groups, provenance, assumptions and run IDs. Open a brief and choose **Print / save as PDF**. Explorer retains direct HTML/PDF/ZIP exports.
+
+The teaching comparison is deliberately mixed: fixed green 30 → 15 s, seed 42, 160 requests, 300 s evaluation. Completion increases **130 → 132 trips**, completed-trip mean increases **158.8 → 159.9 s**, and full-demand loss falls **225.2 → 222.0 s/request**. The example's 5% loss-reduction target is not reached (about 1.4%). These are authentic SUMO outputs, not Bangalore measurements.
+
+## Two modes
+
+| Capability | Pages demonstration | Full local application |
+|---|---|---|
+| Reviewed recordings and research results | Static JSON/frame chunks | Yes |
+| Studies, dated observations, resident notes | Browser-local | Browser-local |
+| Recorded comparison and available evidence exports | Yes | Yes |
+| New simulations or experiment searches | Disabled with explanation | SUMO |
+| OSM import, calibration, detailed playback reproduction | Disabled with explanation | Python/SUMO |
+| Scenario drafts | Browser-local | Backend database |
+
+Pages never queues a fake job or presents cached results as a new run. It makes **no `/api/` requests**. The build reads only reviewed `examples/`, never local databases or private observations: 478 recorded jobs, three completed research/calibration tasks, available playback and HSR geometry. Shared network descriptions are de-duplicated without modifying source evidence. Metrics-only experiments require the full application to reproduce detailed playback.
+
+## Full local setup
+
+Use Python **3.12**, Node **22 or 24**, and pnpm **10.15.0**. The pinned Linux requirements install SUMO 1.27.1, TraCI and sumolib; there is no substitute engine. Run from the repository root:
+
+```bash
 python3.12 -m venv .venv
-source .venv/bin/activate
+. .venv/bin/activate
 python -m pip install -r requirements.lock.txt
+python -m pip check
+npm install --global pnpm@10.15.0
+pnpm --dir frontend install --frozen-lockfile
+pnpm --dir frontend build
 python -m uvicorn backend.api:app --host 127.0.0.1 --port 8000
 ```
 
-Open **http://127.0.0.1:8000**. On first startup, the supplied example catalog installs into `data/`. Choose **? → Open recorded case**. Recordings are generated by the actual pinned SUMO engine; they are not animation fixtures.
+Open the local application on port 8000. Startup idempotently installs the reviewed recordings and HSR network. Ignored `data/` holds the database and runs; `CITYLAB_DATA` can select a separate directory. Preserve it on restart. Do not run two API processes against one data root. The backend has no multi-user authentication: keep it bound to loopback.
 
-Windows: use `.venv\Scripts\activate` instead of `source`. Windows installation has not been exercised for this release. Keep the server on localhost: there is no authentication or multi-user isolation.
+For development, keep the API running and start `pnpm --dir frontend dev` in another terminal. Vite proxies `/api` to port 8000; `CITYLAB_API_TARGET` can select another local address. After building Pages, rebuild without `VITE_DEMO` before using `frontend/dist` for the full app.
 
-### Frontend development / rebuild
+No paid language-model API, live traffic service or remote map tile service is required. Internet is needed for package installation and publishing, not ordinary local analysis.
 
-Node 22 and pnpm 10.15.0:
+## Static build and checks
 
-```sh
-cd frontend
-corepack enable
-corepack prepare pnpm@10.15.0 --activate
-pnpm install --frozen-lockfile
-pnpm run build
-# Optional separate development server, while the Python server runs:
-pnpm run dev
+```bash
+python -m scripts.build_pages_data
+pnpm --dir frontend build:pages
+mkdir -p /tmp/citylab-site
+ln -s "$PWD/frontend/dist" /tmp/citylab-site/traffic-sim
+python -m http.server 4173 --bind 127.0.0.1 --directory /tmp/citylab-site
 ```
 
-### Docker
+Use the `/traffic-sim/` subpath. Direct navigation uses `#study`, `#workspace`, `#explorer`, `#evidence` and `#data`, so no rewrite server is required. GitHub Actions checks the source and browser journeys before deploying the artifact. Repository **Settings → Pages → Source → GitHub Actions** must be enabled with the required administration permission.
 
-```sh
-docker compose up --build
-```
-
-The service binds to localhost:8000 and retains SQLite and run files in a named volume. Docker was **not executed** on the verification host because Docker is unavailable. See [verification](docs/VERIFICATION.md) for exactly what was run.
-
-## A first experiment
-
-1. Open the recorded case from the question-mark button. Inspect synchronized maps at 160 seconds.
-2. Switch to **Evidence**. Compare completion, conditional travel-time distributions, queue histories, emissions and class/OD samples.
-3. Choose **Edit a copy**, select a directed road using Find, and change its access or speed. The map switches to **Unsimulated draft**; recorded outcomes remain separate.
-4. Run the draft. Your first completed run becomes a persistent baseline; any completed run can replace it through Run history.
-5. In **Explorer**, choose permitted parameters, objectives, completion constraints, disjoint seeds and held-out conditions. Calculate the budget before starting.
-6. Open the bundled research study from Study history. Inspect a candidate and its paired seed results. Search runs are aggregate-only; use **Evidence → Reproduce with playback** for an exact v2 rerun with detailed positions.
-7. Inspect the recorded pressure-controller example from Run history. Find junction `n11` to see actual movements, downstream queues, phase scores and safeguards.
-8. Export PDF/HTML, machine-readable results and an evidence ZIP. Export a run ZIP before deleting it. Study-owned trials remain protected from individual deletion.
-
-A frontier means *non-dominated among the evaluated feasible candidates*. It is not a global optimum, a forecast, or a recommendation for real-world traffic operations.
-
-## Real geography and synthetic observations
-
-The included HSR extract was retrieved from OpenStreetMap on 2026-09-25, bbox `77.635,12.908,77.641,12.914`. It produces **642 directed roads**, 333 junctions, and three weakly connected components. Source XML, conversion settings, attribution and hashes are bundled. See [OSM copyright](https://www.openstreetmap.org/copyright). Imported default lane/speed/signal assumptions require review. No Bangalore traffic observations were supplied.
-
-Data lab accepts bounded HSR OSM XML (not PBF), validates and converts it in a cancellable worker. CSV observations require:
-
-```csv
-road_id,start_s,end_s,vehicle_count,mean_speed_mps,vehicle_class
-n00_n10,0,60,4,3.2,all
-```
-
-The last two columns are optional. Counts mean **directed-road entries**, speed means arithmetic mean **entry speed in m/s**, intervals are `[start,end)` seconds. Unknown IDs, missing required data, overlapping intervals/classes and impossible values are rejected. Original bytes are preserved and downloadable.
-
-The bundled observation fixture comes from SUMO seed 9, explicitly labelled **synthetic, not field validation**. Fit demand on early intervals/seeds 11–12; validate later intervals on seeds 101–102. This demonstrates a bounded workflow, not validation of the real neighbourhood.
-
-## Reproduce and verify
-
-```sh
+```bash
 python -m pytest -q
-# Fresh data location forces new computation instead of reusing cached trials:
-CITYLAB_DATA=data-reproduction python -m scripts.build_demo
-python -m scripts.benchmark_v2
-# Optional: requires Playwright and Chrome; see scripts/browser-release.cjs
-node scripts/browser-release.cjs
+pnpm --dir frontend test
+node scripts/test_interpolation.cjs
+pnpm --dir frontend exec playwright install --with-deps chromium
+# Keep the static server above running:
+node scripts/browser-research.mjs
 ```
 
-`CITYLAB_DATA` selects a separate local data root. Run one API server per root. The example generator executes a declared research budget and can take several minutes. It resumes completed trials after an interruption. The study specification is in `examples/case-study/study-spec.json`; manifests, frozen candidates and immutable run networks are included.
+The browser script uses system Chromium or Playwright's browser; `CHROME_PATH` overrides it. `CITYLAB_BROWSER_URL`, `CITYLAB_BROWSER_OUTPUT` and `CITYLAB_TEST_LOCAL=1` support the full local journey. Outputs go to ignored `test-results/`. See [verification](docs/RESEARCH-VERIFICATION.md) for actual results and untested platforms.
 
-## Files and evidence
+## Evidence limitations
 
-- `backend/`: versioned scenarios; network/import validation; SUMO execution and controllers; durable jobs; experiments; calibration; comparisons; exports.
-- `frontend/src/`: typed domain models, API utilities, state hooks, lane-constrained playback, focused UI components.
-- `examples/case-study/`: authentic recordings, research/calibration catalog, exact configurations and reports.
-- `examples/networks/`: geographic network, OSM source and provenance.
-- `docs/METHODOLOGY.md`: equations, controller mapping, uncertainty, units and limitations.
-- `docs/VERIFICATION.md`: actual checks, measured performance and blockers.
-- `docs/MIGRATIONS.md`: additive storage changes and historical-run behavior.
+- Passenger cars and buses only: motorcycles, auto-rickshaws, pedestrians, cyclists and local heterogeneous lane behaviour are not adequately represented.
+- Road entries can fit/check demand. Mean entry speed can check a matching positive count interval. Turning counts, queue snapshots and green times remain contextual; automatic calibration of these measurements is not implemented.
+- Fitting a limited demand model does not validate all junction dynamics. Keep days and fitting/validation periods separate. MAE includes measured zeros; unavailable speeds remain missing. No real field data is supplied.
+- Compatibility requires matching network, trip manifest, horizon, warm-up, engine, measurement definition, routing and occupancy. Completed averages exclude unfinished trips; inspect full-demand outcomes alongside them. Missing values appear as **—**, never zero.
+- Routes are chosen before departure. Tested closures change feasible departure routes and can invalidate services; no within-trip dynamic diversion or adaptive traveller response is predicted.
+- Road-level evidence uses recorded entries and mean entry speed, never a fabricated allocation of network-wide delay. Paired maps share extent and legend.
+- One seed pair has no confidence interval. Explorer's independent seeds are replicates; vehicles within a run are not. Study briefs do not silently substitute unrelated Explorer results into the selected pair.
+- Person weighting uses assumed occupancy; emissions use SUMO classes. HSR geometry has disconnected components and inferred/default attributes. Review directions, permitted turns, lanes, signals, bus services and local vehicle mix before a field study.
 
-## Scope and limitations
+## Architecture and recovery
 
-No pedestrian/cyclist simulation, live traffic feed, passenger boarding model, dynamic route choice, arbitrary geometry editing, multi-user service, or empirical validation is claimed. Bus occupancy is assumed; stop vehicle-seconds are not passenger waiting. Pressure control follows fixed cyclic phase order and has no proven stability guarantee. Queue and emission estimates inherit SUMO model assumptions. A synthetic grid and one small disconnected geographic extract cannot establish city-scale conclusions.
+`frontend/src/research/` holds observation validation, study persistence, evidence and reports. `StudyWorkspace.tsx` connects these to the original simulation UI. `api.ts` selects the backend or static recording adapter in `demo.ts`. `backend/` retains simulation, routing, import, calibration, statistics and exports. `scripts/build_pages_data.py` generates ignored static assets from reviewed `examples/`.
+
+The prior upload flattened the original folders. The source ZIP was recovered and all **2,578 manifest-listed files** were verified before restoring the structure and preserving Git history. [The original manifest](docs/ORIGINAL-RELEASE-MANIFEST.json) describes the prior release, not this modified source. Older `v2-*` screenshots and verification documents are historical; current screenshots are in `docs/screenshots/`.
+
+See [architecture](docs/ARCHITECTURE.md), [methodology](docs/METHODOLOGY.md), [original case](docs/CASE_STUDY.md) and [implementation checklist](docs/IMPLEMENTATION.md). Geographic data: © OpenStreetMap contributors, ODbL; provenance is retained with the HSR extract.

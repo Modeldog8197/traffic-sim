@@ -1,0 +1,16 @@
+{
+  "url": "http://127.0.0.1:4173/traffic-sim/",
+  "demo": true,
+  "checks": [
+    "recorded study, real comparison, evidence JSON and printable brief/PDF",
+    "study duplicate/edit/save/reload, valid CSV accepted and invalid units rejected",
+    "new connected study, criteria lock, immutable evidence, JSON import and reopen",
+    "paired recorded playback, keyboard seeking and selected road inspector",
+    "recorded independent-seed Explorer and held-out calibration results; unsupported execution disabled",
+    "direct hash navigation under subpath; desktop and 390px mobile without horizontal page overflow",
+    "no console/page errors, no broken requests, and no backend API requests"
+  ],
+  "errors": [],
+  "badResponses": [],
+  "apiRequests": 0
+}
